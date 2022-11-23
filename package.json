@@ -1,0 +1,28 @@
+{
+  "name": "team-site-generator",
+  "version": "1.0.0",
+  "description": "A command line application that will generate a website for a work team.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennnmarshall/team-site-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jennnmarshall/team-site-generator/issues"
+  },
+  "homepage": "https://github.com/jennnmarshall/team-site-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^24.8.0"
+  }
+}
