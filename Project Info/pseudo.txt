@@ -1,0 +1,44 @@
+Manager
+Engineer
+Intern
+
+Push each response into a single array; object should include all the relevant detail for the role,
+if statement to differentiate between roles in card build // first index in that array will be the project name
+
+
+Prompts:
+*function* startProject()
+To begin - 
+What is your project's name?
+
+*function* addManager()
+Add manager:
+What is your project manager's name?
+email
+ID
+office number
+
+*function* addEngineer()
+Add engineer:
+What is your engineer's name?
+email
+ID
+github username (make into link)
+
+*function* addIntern()
+Add intern:
+What is your intern's name?
+email
+ID
+school
+
+*function* addTeamMember()
+Would you like to add another team member?
+List - add engineer, add intern, that's the whole team
+switch statement between list, to direct to other function prompts
+
+*function* finalTeam()
+when no more team entries, build HTML from template in sections w/template using array 
+for loop to create a card for each entry in the array
+console log success message or error
+
