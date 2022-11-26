@@ -31,7 +31,7 @@ function generateCards(site) {
                             <ul class="justify-item-center">
                                 <li class="list-group-item">${engineer.getId()}</li>
                                 <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-                                <li class="list-group-item">Github: ${engineer.getGithub()}</li>
+                                <li class="list-group-item">Github: <a href="http://www.github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
                             </ul>
                         </div>
                     </div>`;
@@ -53,11 +53,8 @@ function generateCards(site) {
                     </div>`;
   };
 
-  // empty array set to contain stringified html elements from card generation
+  // empty array set to contain html string elements from card generation
   const createHtml = [];
-  //   const checkManager = (employee) => {
-  //     return employee.getRole() === "Manager"
-  //   }
 
   // filters employee roles to create array with chosen role, map creates an array containing the html for each object (1 manager)
   createHtml.push(
@@ -68,7 +65,7 @@ function generateCards(site) {
       .map((manager) => managerCard(manager))
   );
 
-  // does the same, but also joins the html elements in the array into a string
+  // does the same, but also joins the engineer elements together into a string
   createHtml.push(
     site
       .filter((employee) => {
@@ -78,6 +75,7 @@ function generateCards(site) {
       .join("")
   );
 
+  // does the same, but also joins the intern elements together into a string
   createHtml.push(
     site
       .filter((employee) => {

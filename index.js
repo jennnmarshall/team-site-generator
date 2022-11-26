@@ -173,7 +173,7 @@ function finalTeam() {
   console.log(
     "Your team's website has been generated! You can access it in the dist directory."
   )
-  fs.writeFileSync("team-site.html", generateCards(myTeam));
+  fs.writeFileSync(`./dist/${myTeam[0]}.html`, generateCards(myTeam));
 }
 
 startProject();
