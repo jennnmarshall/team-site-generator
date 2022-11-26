@@ -1,11 +1,11 @@
 // required exports and external packages
-const Inquirer = require("Inquirer");
-const fs = require("fs");
+const inquirer = require("inquirer");
+const fs = require('fs');
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
-const { default: inquirer } = require("Inquirer");
+const generateCards = require("./src/createHTML");
 
 // begin inquirer prompts
 
@@ -23,7 +23,7 @@ function startProject() {
         name: "projectName",
       },
     ])
-    .then(response => {
+    .then((response) => {
       const nameObj = response.projectName;
       myTeam.push(nameObj);
       addManager();
@@ -32,35 +32,43 @@ function startProject() {
 
 // function prompts manager info, adds to array, and prompts additional team members
 function addManager() {
-  inquirer.prompt([
-    {
-      type: "input",
-      message: "What is your project manager's name?",
-      name: "name",
-    },
-    {
-      type: "input",
-      message: "What is your project manager's email address?",
-      name: "email",
-    },
-    {
-      type: "input",
-      message: "What is your project manager's employee ID?",
-      name: "id",
-    },
-    {
-      type: "input",
-      message: "What is your project manager's office number?",
-      name: "officeNumber",
-    },
-  ]).then (response => {
-    const manager = new Manager(response.name, response.id, response.email, response.officeNumber);
-    myTeam.push(manager);
-    addTeamMember();
-  })
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your project manager's name?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is your project manager's email address?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is your project manager's employee ID?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is your project manager's office number?",
+        name: "officeNumber",
+      },
+    ])
+    .then((response) => {
+      const manager = new Manager(
+        response.name,
+        response.id,
+        response.email,
+        response.officeNumber
+      );
+      myTeam.push(manager);
+      console.log(myTeam)
+      addTeamMember();
+    });
 }
 
-
+// this function provides a list of choices to the user and switches between the associated functions based upon input
 function addTeamMember() {
   inquirer
     .prompt([
@@ -68,24 +76,24 @@ function addTeamMember() {
         type: "list",
         message: "Would you like to add additional team members?",
         choices: ["Add Engineer", "Add Intern", "That's the whole team!"],
-        name: "teamAdd"
+        name: "teamAdd",
       },
     ])
     .then((response) => {
-        switch (response.teamAdd) {
-            case "Add Engineer":
-                addEngineer();
-                break;
+      switch (response.teamAdd) {
+        case "Add Engineer":
+          addEngineer();
+          break;
 
-            case "Add Intern":
-                addIntern();
-                break;
-                
-            case "That's the whole team!":
-                finalTeam();
-                break;
-        }
-    });    
+        case "Add Intern":
+          addIntern();
+          break;
+
+        case "That's the whole team!":
+          finalTeam();
+          break;
+      }
+    });
 }
 
 function addEngineer() {
@@ -160,9 +168,12 @@ function addIntern() {
     });
 }
 
+// finalTeam provides feedback to the user and writes the html file based on the myTeam array compiled from user responses
 function finalTeam() {
-    console.log("Your team's website has been generated! You can access it in the dist directory.");
-    fs.writeFile(`./dist/${myTeam[0]}.html`, generateSite(myTeam));
+  console.log(
+    "Your team's website has been generated! You can access it in the dist directory."
+  )
+  fs.writeFileSync("team-site.html", generateCards(myTeam));
 }
 
 startProject();
