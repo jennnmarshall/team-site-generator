@@ -1,6 +1,6 @@
 // required exports and external packages
 const inquirer = require("inquirer");
-const fs = require('fs');
+const fs = require("fs");
 const Employee = require("./lib/employee");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -63,7 +63,6 @@ function addManager() {
         response.officeNumber
       );
       myTeam.push(manager);
-      console.log(myTeam)
       addTeamMember();
     });
 }
@@ -172,7 +171,7 @@ function addIntern() {
 function finalTeam() {
   console.log(
     "Your team's website has been generated! You can access it in the dist directory."
-  )
+  );
   fs.writeFileSync(`./dist/${myTeam[0]}.html`, generateCards(myTeam));
 }
 

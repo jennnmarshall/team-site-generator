@@ -39,6 +39,6 @@ switch statement between list, to direct to other function prompts
 
 *function* finalTeam()
 when no more team entries, build HTML from template in sections w/template using array 
-for loop to create a card for each entry in the array
-console log success message or error
+for loop to create a card for each entry in the array // used .filter and .map instead of for loop
+console log feedback
 
